@@ -1,11 +1,20 @@
 #include <Arduino.h>
 
 // AJ-SR04M
-int trig_pin = 12; // Trig Pin
-int echo_pin = 11; // Echo Pin
+#ifdef ARDUINO_ARCH_ESP8266
+int trig_pin = D6; // Trig Pin
+int echo_pin = D7; // Echo Pin
+#elif ARDUINO_ARCH_AVR
+int trig_pin = PD6; // Trig Pin
+int echo_pin = PD7; // Echo Pin
+#endif
 
 // Passive Buzzer
-int buzzer_pin = 7;
+#ifdef ARDUINO_ARCH_ESP8266
+int buzzer_pin = D4;
+#elif ARDUINO_ARCH_AVR
+int buzzer_pin = 13;
+#endif
 
 #define MAX_DISTANCE_CM 150
 #define MIN_DISTANCE_CM 20
